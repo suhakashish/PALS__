@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Catch up on conversations, tasks, deadlines, and decisions with CatchUp AI.">
+  <title>CatchUp AI | What Did I Miss?</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-icon">✦</span>
+        <span>CatchUp<span class="brand-accent"> AI</span></span>
+      </a>
+      <span class="privacy-badge">
+        <span class="status-dot"></span>
+        AI-powered catch-up
+      </span>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <span class="eyebrow">YOUR PERSONAL CHAT ASSISTANT</span>
+        <h1>What did I <span>miss?</span></h1>
+        <p>Skip the scroll. Find the important stuff. Get back on track.</p>
+        <div class="hero-pills">
+          <span>✦ Smart summaries</span>
+          <span>✓ Action items</span>
+          <span>◷ Deadlines</span>
+        </div>
+      </section>
+
+      <section class="input-card panel">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">STEP 01</span>
+            <h2>Your unread conversation</h2>
+            <p>Paste messages from your group chat, meeting, or team.</p>
+          </div>
+          <button id="sampleBtn" class="button button-secondary" type="button">
+            Try sample
+          </button>
+        </div>
+
+        <label for="userName">Your name or mention</label>
+        <input
+          id="userName"
+          type="text"
+          maxlength="80"
+          value="Alex"
+          placeholder="e.g. Alex"
+        >
+        <p class="field-hint">We'll highlight tasks assigned to you when the chat supports it.</p>
+
+        <label for="chatInput">Conversation messages</label>
+        <textarea
+          id="chatInput"
+          rows="9"
+          maxlength="30000"
+          placeholder="Paste your conversation here...&#10;&#10;Aarav: The project review is tomorrow at 2 PM.&#10;Priya: I'll finish the slides today."
+        ></textarea>
+
+        <div class="input-footer">
+          <span id="charCount">0 / 30,000 characters</span>
+          <button id="clearBtn" class="text-button" type="button">Clear text</button>
+        </div>
+
+        <button id="analyzeBtn" class="button button-primary" type="button">
+          <span id="buttonIcon">✦</span>
+          <span id="buttonText">Analyze conversation</span>
+          <span class="button-arrow">→</span>
+        </button>
+
+        <p class="privacy-note">
+          Your conversation is sent to the Gemini API for analysis.
+          Avoid pasting passwords or sensitive private information.
+        </p>
+        <div id="status" class="status-message" role="status" aria-live="polite">
+          Ready when you are.
+        </div>
+      </section>
+
+      <section id="results" class="results-section" hidden>
+        <div class="results-heading">
+          <div>
+            <span class="step-label">STEP 02</span>
+            <h2>Your catch-up report</h2>
+            <p id="reportMeta">Here's what matters.</p>
+          </div>
+          <span class="report-badge">✦ AI report</span>
+        </div>
+
+        <section class="summary-card panel">
+          <div class="card-heading">
+            <span class="card-icon summary-icon">✦</span>
+            <div>
+              <h3>Quick summary</h3>
+              <p>The big picture at a glance</p>
+            </div>
+          </div>
+          <p id="summaryText" class="summary-text"></p>
+        </section>
+
+        <div class="stats-grid">
+          <article class="stat-card panel">
+            <span class="stat-icon task-color">✓</span>
+            <span id="taskCount" class="stat-number">0</span>
+            <span class="stat-label">Action items</span>
+          </article>
+          <article class="stat-card panel">
+            <span class="stat-icon deadline-color">◷</span>
+            <span id="deadlineCount" class="stat-number">0</span>
+            <span class="stat-label">Deadlines & events</span>
+          </article>
+          <article class="stat-card panel">
+            <span class="stat-icon decision-color">◇</span>
+            <span id="decisionCount" class="stat-number">0</span>
+            <span class="stat-label">Decisions & updates</span>
+          </article>
+        </div>
+
+        <section class="report-card panel">
+          <div class="card-heading">
+            <span class="card-icon task-icon">✓</span>
+            <div>
+              <h3>Action items</h3>
+              <p>Tasks, owners, and priorities</p>
+            </div>
+          </div>
+          <div id="taskList" class="item-list"></div>
+        </section>
+
+        <section class="report-card panel">
+          <div class="card-heading">
+            <span class="card-icon deadline-icon">◷</span>
+            <div>
+              <h3>Deadlines & events</h3>
+              <p>Dates, meetings, and changes</p>
+            </div>
+          </div>
+          <div id="deadlineList" class="item-list"></div>
+        </section>
+
+        <section class="report-card panel">
+          <div class="card-heading">
+            <span class="card-icon decision-icon">◇</span>
+            <div>
+              <h3>Decisions & updates</h3>
+              <p>What the group agreed on or changed</p>
+            </div>
+          </div>
+          <div id="decisionList" class="item-list"></div>
+        </section>
+
+        <button id="backToInputBtn" class="button button-secondary" type="button">
+          ↑ Back to conversation
+        </button>
+      </section>
+
+      <footer class="footer">
+        <span class="footer-mark">✦</span>
+        Built to help you catch up, not fall further behind.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
